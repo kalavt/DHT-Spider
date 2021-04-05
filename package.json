@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/kalavt/DHT-Spider/issues"
   },
-  "homepage": "https://github.com/kalavt/DHT-Spider#readme"
+  "homepage": "https://github.com/kalavt/DHT-Spider#readme",
+  "dependencies": {
+    "dhtspider": "^0.1.0"
+  }
 }
