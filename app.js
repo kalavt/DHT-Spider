@@ -7,7 +7,7 @@ const dynamoose = require("dynamoose");
 dynamoose.aws.ddb.local(process.env.backend);
 var InfoHash = dynamoose.model("InfoHash", {
   hash: String,
-  downloaded: Number,
+  addr: String,
 });
 
 const spider = new Spider();
@@ -15,11 +15,11 @@ spider.loadNodes();
 spider.tableCaption = parseInt(process.env.TABLE_CAPTION || 200);
 
 spider.on("ensureHash", async (hash, addr) => {
+  console.log(`magnet:?xt=urn:btih:${hash}`);
   await new InfoHash({
     hash: hash,
     addr: addr,
   }).save();
-  console.log(`magnet:?xt=urn:btih:${hash}`);
 });
 
 exitHook((exit) => {

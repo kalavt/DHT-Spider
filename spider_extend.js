@@ -8,20 +8,16 @@ Spider.prototype.bootstraps = [
 ];
 
 Spider.prototype.saveNodes = function (cb) {
-  fs.writeFile("token", JSON.stringify(this.token), () => {
-    fs.writeFile("table", JSON.stringify(this.table), cb);
-  });
+  fs.writeFile(".session", JSON.stringify(this), cb);
 };
 
 Spider.prototype.loadNodes = function () {
-  fs.readFile("table", "utf-8", (err, data) => {
+  fs.readFile(".session", "utf-8", (err, data) => {
     if (!err && data) {
-      this.table.nodes = JSON.parse(data.toString()).nodes;
-    }
-  });
-  fs.readFile("token", "utf-8", (err, data) => {
-    if (!err && data) {
-      this.token = JSON.parse(data.toString());
+      var session = JSON.parse(data.toString());
+      this.token.token = session.token.token;
+      this.table.nodes = session.table.nodes;
+      this.table.id = session.table.id;
     }
   });
 };
