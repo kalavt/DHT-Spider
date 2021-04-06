@@ -18,7 +18,7 @@ spider.on("ensureHash", async (hash, addr) => {
   console.log(`magnet:?xt=urn:btih:${hash}`);
   await new InfoHash({
     hash: hash,
-    addr: addr,
+    addr: addr.toString(),
   }).save();
 });
 
