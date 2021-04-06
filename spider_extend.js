@@ -8,7 +8,7 @@ Spider.prototype.bootstraps = [
 ];
 
 Spider.prototype.saveNodes = function (cb) {
-  fs.writeFile(".session", JSON.stringify(this), cb);
+  fs.writeFile(".session", JSON.stringify(this), cb || (() => {}));
 };
 
 function isBufferLike(x) {
@@ -38,7 +38,7 @@ function reviver(key, value) {
 Spider.prototype.loadNodes = function () {
   fs.readFile(".session", "utf-8", (err, data) => {
     if (!err && data) {
-      var session = JSON.parse(data.toString(),reviver);
+      var session = JSON.parse(data.toString(), reviver);
       this.token.token = session.token.token;
       this.table.nodes = session.table.nodes;
       this.table.id = session.table.id;
