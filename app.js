@@ -8,10 +8,7 @@ const add = require("async-exit-hook");
 dynamoose.aws.ddb.local(process.env.backend);
 var InfoHash = dynamoose.model("InfoHash", {
   hash: String,
-  addr: {
-    address:String,
-    port:Number
-  },
+  addr: String,
 });
 
 const spider = new Spider();
@@ -19,11 +16,10 @@ spider.loadNodes();
 spider.tableCaption = parseInt(process.env.TABLE_CAPTION || 200);
 
 spider.on("ensureHash", async (hash, addr) => {
-  console.log(`magnet:?xt=urn:btih:${hash}`);
-  console.log(addr);
+  console.log(`magnet:?xt=urn:btih:${hash} ${addr.address}:${addr.port}`);
   await new InfoHash({
     hash: hash,
-    addr: addr,
+    addr: `${addr.address}:${addr.port}`,
   }).save();
 });
 
