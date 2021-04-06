@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/kalavt/DHT-Spider#readme",
   "dependencies": {
-    "dhtspider": "^0.1.0"
+    "async-exit-hook": "^2.0.1",
+    "dhtspider": "^0.1.0",
+    "dotenv": "^8.2.0"
   }
 }

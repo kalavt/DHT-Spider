@@ -1,16 +1,17 @@
-const Spider = require('dhtspider')
+const Spider = require("dhtspider");
+const exitHook = require("async-exit-hook");
+require("./spider_extend");
 
-const spider = new Spider({
-    bootstraps: [
-        {address: 'router.bittorrent.com', port: 6881}, 
-        {address: 'dht.transmissionbt.com', port: 6881},
-        {address: 'router.utorrent.com', port: 6881}
-    ],
-    tableCaption: parseInt(process.env.TABLE_CAPTION || 200)
-})
+const spider = new Spider();
+spider.loadNodes();
+spider.tableCaption = parseInt(process.env.TABLE_CAPTION || 200);
 
-spider.on('ensureHash', (hash, addr)=> console.log(`magnet:?xt=urn:btih:${hash}`))
+spider.on("ensureHash", (hash, addr) =>
+  console.log(`magnet:?xt=urn:btih:${hash}`)
+);
 
-spider.listen(parseInt(process.env.PORT || 6881))
+exitHook((exit) => {
+   spider.saveNodes(exit);
+});
 
-
+spider.listen(parseInt(process.env.PORT || 6881));
