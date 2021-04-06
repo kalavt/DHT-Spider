@@ -16,7 +16,8 @@ spider.loadNodes();
 spider.tableCaption = parseInt(process.env.TABLE_CAPTION || 200);
 
 spider.on("ensureHash", async (hash, addr) => {
-  console.log(`magnet:?xt=urn:btih:${hash} ${addr}`);
+  console.log(`magnet:?xt=urn:btih:${hash}`);
+  console.log(addr);
   await new InfoHash({
     hash: hash,
     addr: addr,
