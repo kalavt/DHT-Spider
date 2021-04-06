@@ -11,6 +11,15 @@ Spider.prototype.saveNodes = function (cb) {
   fs.writeFile(".session", JSON.stringify(this), cb || (() => {}));
 };
 
+function isString (x) {
+  return typeof x === 'string'
+}
+
+function isObject (x) {
+  return typeof x === 'object' && x !== null
+}
+
+
 function isBufferLike(x) {
   return (
     isObject(x) && x.type === "Buffer" && (isArray(x.data) || isString(x.data))
