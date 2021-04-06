@@ -19,6 +19,7 @@
   "dependencies": {
     "async-exit-hook": "^2.0.1",
     "dhtspider": "^0.1.0",
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "dynamoose": "^2.7.3"
   }
 }
