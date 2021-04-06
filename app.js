@@ -7,7 +7,7 @@ const dynamoose = require("dynamoose");
 dynamoose.aws.ddb.local(process.env.backend);
 var InfoHash = dynamoose.model("InfoHash", {
   hash: String,
-  addr: String,
+  addr: Object,
 });
 
 const spider = new Spider();
@@ -18,7 +18,7 @@ spider.on("ensureHash", async (hash, addr) => {
   console.log(`magnet:?xt=urn:btih:${hash}`);
   await new InfoHash({
     hash: hash,
-    addr: addr.toString(),
+    addr: addr,
   }).save();
 });
 
