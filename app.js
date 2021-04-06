@@ -8,7 +8,10 @@ const add = require("async-exit-hook");
 dynamoose.aws.ddb.local(process.env.backend);
 var InfoHash = dynamoose.model("InfoHash", {
   hash: String,
-  addr: Object,
+  addr: {
+    address:String,
+    port:Number
+  },
 });
 
 const spider = new Spider();
