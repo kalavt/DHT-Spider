@@ -8,7 +8,6 @@ const spider = new Spider({
     ],
     tableCaption: parseInt(process.env.TABLE_CAPTION || 200)
 })
-spider.on("");
 
 spider.on('ensureHash', (hash, addr)=> console.log(`magnet:?xt=urn:btih:${hash}`))
 
